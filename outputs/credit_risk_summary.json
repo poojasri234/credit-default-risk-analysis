@@ -1,0 +1,78 @@
+{
+  "id": "credit-default-risk",
+  "title": "Credit default risk profile",
+  "category": "Risk",
+  "kicker": "Risk analytics / UCI public dataset",
+  "description": "A descriptive analysis of public credit-card client data, showing how observed next-month default varies across repayment-status and credit-limit cohorts.",
+  "tools": [
+    "Python",
+    "pandas",
+    "SQL",
+    "SQLite"
+  ],
+  "metrics": [
+    {
+      "label": "Clients profiled",
+      "value": "30,000",
+      "detail": "Unique credit-card client records across 24 input attributes"
+    },
+    {
+      "label": "Observed default rate",
+      "value": "22.1%",
+      "detail": "6,636 records labeled as next-month default"
+    },
+    {
+      "label": "2+ month delay cohort",
+      "value": "69.6%",
+      "detail": "2,177 of 3,130 clients"
+    },
+    {
+      "label": "No-reported-delay cohort",
+      "value": "13.8%",
+      "detail": "3,207 of 23,182 clients"
+    }
+  ],
+  "chart": {
+    "type": "bar",
+    "labels": [
+      "No reported delay",
+      "1 month delay",
+      "2+ months delay"
+    ],
+    "values": [
+      13.83,
+      33.95,
+      69.55
+    ],
+    "unit": "percent",
+    "title": "Observed next-month default rate by recent repayment status"
+  },
+  "question": "Which client cohorts show higher observed next-month default rates, and which signals warrant further risk review?",
+  "method": [
+    "Loaded the UCI workbook and validated 30,000 unique client IDs, 25 source fields, no exact duplicate rows, and no missing values.",
+    "Calculated observed next-month default as records labeled 1 divided by all clients in each cohort; this is a descriptive rate, not a prediction score.",
+    "Grouped clients by their most recent recorded repayment-status field and data-driven credit-limit quartiles using pandas.",
+    "Reconciled repayment-status cohort counts and default rates with independent SQLite GROUP BY queries before exporting aggregate results."
+  ],
+  "findings": [
+    "6,636 of 30,000 clients were labeled as defaulting next month, an observed rate of 22.12%.",
+    "Clients with 2+ months of reported recent payment delay had a 69.55% observed default rate (2,177/3,130), compared with 13.83% (3,207/23,182) for the no-reported-delay cohort.",
+    "The lowest credit-limit quartile had a 31.79% observed default rate, versus 13.98% for the highest quartile."
+  ],
+  "recommendations": [
+    "Use repayment-status cohorts as a descriptive monitoring view and investigate whether differences persist after controlling for other documented attributes.",
+    "Validate feature definitions, timing, fairness, and performance on current business data before using any model or cohort for a credit decision.",
+    "Track data completeness and cohort mix alongside default rates so changes in composition are not mistaken for changing risk."
+  ],
+  "limitations": [
+    "This is a historical public dataset of Taiwan credit-card clients; results are portfolio findings, not employer outcomes.",
+    "The analysis describes associations in a labeled dataset. It does not demonstrate causality, predict future default, or recommend an automated lending decision.",
+    "No model was trained, validated, deployed, or used for a real credit decision. Fairness, regulatory, and business-policy review would be required before any practical use."
+  ],
+  "source": {
+    "name": "UCI Default of Credit Card Clients \u2014 Yeh (2009)",
+    "url": "https://doi.org/10.24432/C55S3H",
+    "license": "CC BY 4.0. Aggregate portfolio findings only; raw customer-level data is not redistributed."
+  },
+  "analysisPath": "analysis/credit_risk_analysis.py"
+}

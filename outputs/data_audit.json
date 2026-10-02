@@ -1,0 +1,56 @@
+{
+  "rows": 30000,
+  "input_columns": 25,
+  "unique_customer_ids": 30000,
+  "duplicate_rows": 0,
+  "missing_values": 0,
+  "defaults": 6636,
+  "overall_default_rate_percent": 22.12,
+  "recent_payment_status": [
+    {
+      "cohort": "No reported delay",
+      "customers": 23182,
+      "defaults": 3207,
+      "default_rate_percent": 13.834009145026313
+    },
+    {
+      "cohort": "1 month delay",
+      "customers": 3688,
+      "defaults": 1252,
+      "default_rate_percent": 33.947939262472886
+    },
+    {
+      "cohort": "2+ months delay",
+      "customers": 3130,
+      "defaults": 2177,
+      "default_rate_percent": 69.55271565495208
+    }
+  ],
+  "limit_quartiles": [
+    {
+      "cohort": "Lowest limit quartile",
+      "customers": 7676,
+      "defaults": 2440,
+      "default_rate_percent": 31.787389265242314
+    },
+    {
+      "cohort": "Lower-middle limit quartile",
+      "customers": 7614,
+      "defaults": 1882,
+      "default_rate_percent": 24.717625426845284
+    },
+    {
+      "cohort": "Upper-middle limit quartile",
+      "customers": 7643,
+      "defaults": 1326,
+      "default_rate_percent": 17.34920842601073
+    },
+    {
+      "cohort": "Highest limit quartile",
+      "customers": 7067,
+      "defaults": 988,
+      "default_rate_percent": 13.980472619216075
+    }
+  ],
+  "validation": "Pandas and SQLite repayment-status cohort counts and rates reconcile."
+}
