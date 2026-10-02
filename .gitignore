@@ -1,0 +1,6 @@
+# Raw public data and locally generated artifacts
+data/*.xlsx
+data/*.xls
+__pycache__/
+*.py[cod]
+.venv/
