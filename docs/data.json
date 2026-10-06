@@ -1,0 +1,96 @@
+{
+  "project": "Credit Default Risk Profile",
+  "source": "UCI Default of Credit Card Clients — Yeh (2009); historical Taiwan credit-card data",
+  "filters": {
+    "recent_payment_status": [
+      "No reported delay",
+      "1 month delay",
+      "2+ months delay"
+    ],
+    "credit_limit_quartile": [
+      "Lowest limit quartile",
+      "Lower-middle limit quartile",
+      "Upper-middle limit quartile",
+      "Highest limit quartile"
+    ]
+  },
+  "status_limit_cohorts": [
+    {
+      "recent_payment_status": "No reported delay",
+      "credit_limit_quartile": "Lowest limit quartile",
+      "clients": 5183,
+      "defaults": 1033
+    },
+    {
+      "recent_payment_status": "No reported delay",
+      "credit_limit_quartile": "Lower-middle limit quartile",
+      "clients": 5681,
+      "defaults": 837
+    },
+    {
+      "recent_payment_status": "No reported delay",
+      "credit_limit_quartile": "Upper-middle limit quartile",
+      "clients": 6243,
+      "defaults": 736
+    },
+    {
+      "recent_payment_status": "No reported delay",
+      "credit_limit_quartile": "Highest limit quartile",
+      "clients": 6075,
+      "defaults": 601
+    },
+    {
+      "recent_payment_status": "1 month delay",
+      "credit_limit_quartile": "Lowest limit quartile",
+      "clients": 1174,
+      "defaults": 496
+    },
+    {
+      "recent_payment_status": "1 month delay",
+      "credit_limit_quartile": "Lower-middle limit quartile",
+      "clients": 911,
+      "defaults": 322
+    },
+    {
+      "recent_payment_status": "1 month delay",
+      "credit_limit_quartile": "Upper-middle limit quartile",
+      "clients": 907,
+      "defaults": 252
+    },
+    {
+      "recent_payment_status": "1 month delay",
+      "credit_limit_quartile": "Highest limit quartile",
+      "clients": 696,
+      "defaults": 182
+    },
+    {
+      "recent_payment_status": "2+ months delay",
+      "credit_limit_quartile": "Lowest limit quartile",
+      "clients": 1319,
+      "defaults": 911
+    },
+    {
+      "recent_payment_status": "2+ months delay",
+      "credit_limit_quartile": "Lower-middle limit quartile",
+      "clients": 1022,
+      "defaults": 723
+    },
+    {
+      "recent_payment_status": "2+ months delay",
+      "credit_limit_quartile": "Upper-middle limit quartile",
+      "clients": 493,
+      "defaults": 338
+    },
+    {
+      "recent_payment_status": "2+ months delay",
+      "credit_limit_quartile": "Highest limit quartile",
+      "clients": 296,
+      "defaults": 205
+    }
+  ],
+  "notes": [
+    "Observed default rate = records labeled default next month ÷ clients in the selected aggregate cohort.",
+    "Descriptive analysis only: not a prediction score, lending policy, or automated decision.",
+    "No customer identifiers are exported."
+  ]
+}
