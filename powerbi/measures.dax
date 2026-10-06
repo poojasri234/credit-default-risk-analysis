@@ -1,0 +1,92 @@
+/*
+Credit Default Risk Analysis — calculated columns and measures
+
+Assumptions
+- Imported table name: 'Credit Clients'
+- Source values match the validated UCI Default of Credit Card Clients workbook.
+- Create the calculated columns before building the visuals.
+- These are descriptive portfolio measures, not production lending logic.
+*/
+
+/* =========================
+   Calculated columns
+   ========================= */
+
+Recent Repayment Status =
+VAR PayStatus = 'Credit Clients'[PAY_0]
+RETURN
+    SWITCH(
+        TRUE(),
+        ISBLANK(PayStatus), BLANK(),
+        PayStatus >= 2, "2+ months delay",
+        PayStatus = 1, "1 month delay",
+        "No reported delay"
+    )
+
+Recent Repayment Status Sort =
+SWITCH(
+    'Credit Clients'[Recent Repayment Status],
+    "No reported delay", 1,
+    "1 month delay", 2,
+    "2+ months delay", 3,
+    BLANK()
+)
+
+/*
+The following cut points reproduce the validated pd.qcut grouping for this
+specific UCI workbook. They are not general-purpose business thresholds.
+*/
+Credit Limit Quartile (UCI) =
+VAR CreditLimit = 'Credit Clients'[LIMIT_BAL]
+RETURN
+    SWITCH(
+        TRUE(),
+        ISBLANK(CreditLimit), BLANK(),
+        CreditLimit <= 50000, "Lowest limit quartile",
+        CreditLimit <= 140000, "Lower-middle limit quartile",
+        CreditLimit <= 240000, "Upper-middle limit quartile",
+        "Highest limit quartile"
+    )
+
+Credit Limit Quartile Sort =
+SWITCH(
+    'Credit Clients'[Credit Limit Quartile (UCI)],
+    "Lowest limit quartile", 1,
+    "Lower-middle limit quartile", 2,
+    "Upper-middle limit quartile", 3,
+    "Highest limit quartile", 4,
+    BLANK()
+)
+
+/* =========================
+   Measures
+   ========================= */
+
+Client Count =
+COUNTROWS('Credit Clients')
+
+Unique Client Count =
+DISTINCTCOUNT('Credit Clients'[ID])
+
+Default Count =
+CALCULATE(
+    [Client Count],
+    KEEPFILTERS('Credit Clients'[default payment next month] = 1)
+)
+
+Observed Next-Month Default Rate =
+DIVIDE([Default Count], [Client Count])
+
+Non-Default Count =
+CALCULATE(
+    [Client Count],
+    KEEPFILTERS('Credit Clients'[default payment next month] = 0)
+)
+
+Non-Default Rate =
+DIVIDE([Non-Default Count], [Client Count])
+
+/*
+Format these as Whole number: Client Count, Unique Client Count, Default Count,
+Non-Default Count. Format the two rate measures as Percentage with two decimal places.
+*/
