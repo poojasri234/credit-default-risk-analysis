@@ -74,5 +74,5 @@
     "url": "https://doi.org/10.24432/C55S3H",
     "license": "CC BY 4.0. Aggregate portfolio findings only; raw customer-level data is not redistributed."
   },
-  "analysisPath": "analysis/credit_risk_analysis.py"
+  "analysisPath": "src/credit_risk_analysis.py"
 }
