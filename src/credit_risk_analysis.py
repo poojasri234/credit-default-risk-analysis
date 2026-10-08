@@ -163,7 +163,7 @@ def calculate(data: pd.DataFrame, audit: dict) -> tuple[dict, dict]:
             "url": SOURCE_URL,
             "license": "CC BY 4.0. Aggregate portfolio findings only; raw customer-level data is not redistributed.",
         },
-        "analysisPath": "analysis/credit_risk_analysis.py",
+        "analysisPath": "src/credit_risk_analysis.py",
     }
     audit.update({
         "defaults": defaults,
